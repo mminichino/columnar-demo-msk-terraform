@@ -1,0 +1,10 @@
+{
+    "name": "debezium-connector-mongodb-v2-7-1",
+    "contentType": "ZIP",
+    "location": {
+        "s3Location": {
+          "bucketArn": "arn:aws:s3:::mm-msk-plugins",
+          "fileKey": "debezium-connector-mongodb-v2.7.1.zip"
+      }
+    }
+  }

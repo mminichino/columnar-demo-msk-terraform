@@ -1,0 +1,11 @@
+region = "us-east-1"
+environment = "columnar-demo"
+vpc_cidr = "10.88.0.0/16"
+owner_email = "john.doe@example.com"
+connector_iam_role = "AWS_Admin_Role"
+s3_bucket_name = "plugin-bucket"
+msk_plugin_zip = "debezium-connector-mongodb-v2.7.1.zip"
+collection_list = ["sample_analytics.accounts", "sample_analytics.customers", "sample_analytics.transactions"]
+mongo_hostname = "cluster0.abcdef.mongodb.net"
+mongo_username = "developer"
+mongo_password = "password"
