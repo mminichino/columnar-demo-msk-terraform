@@ -1,4 +1,5 @@
 region = "us-east-1"
+aws_auth_profile = "default"
 environment = "columnar-demo"
 vpc_cidr = "10.88.0.0/16"
 owner_email = "john.doe@example.com"

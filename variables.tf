@@ -3,6 +3,11 @@ variable "region" {
   type        = string
 }
 
+variable "aws_auth_profile" {
+  description = "AWS auth profile"
+  type        = string
+}
+
 variable "environment" {
   description = "Environment"
   type        = string
@@ -35,5 +40,50 @@ variable "ssh_public_key" {
 
 variable "owner_email" {
   description = "Owner email for tag"
+  type        = string
+}
+
+variable "msk_user" {
+  description = "Username for MSK"
+  type        = string
+}
+
+variable "msk_password" {
+  description = "Password for MSK"
+  type        = string
+}
+
+variable "connector_iam_role" {
+  description = "Connector IAM role"
+  type        = string
+}
+
+variable "s3_bucket_name" {
+  description = "Owner email for tag"
+  type        = string
+}
+
+variable "msk_plugin_zip" {
+  description = "Owner email for tag"
+  type        = string
+}
+
+variable "collection_list" {
+  description = "Mongo collection list"
+  type        = list
+}
+
+variable "mongo_username" {
+  description = "Mongo connect string"
+  type        = string
+}
+
+variable "mongo_password" {
+  description = "Mongo connect string"
+  type        = string
+}
+
+variable "mongo_hostname" {
+  description = "Mongo connect string"
   type        = string
 }

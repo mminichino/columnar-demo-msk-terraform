@@ -1,5 +1,6 @@
 provider "aws" {
   region  = var.region
+  profile = var.aws_auth_profile
 }
 
 data "aws_iam_role" "connector_role" {
@@ -30,7 +31,7 @@ data "aws_subnets" "subnets" {
 }
 
 data "aws_cloudwatch_log_group" "log_group" {
-  name = "kafka_broker_logs"
+  name = "${var.environment}-msk-log-group"
 }
 
 data "aws_s3_bucket" "bucket" {

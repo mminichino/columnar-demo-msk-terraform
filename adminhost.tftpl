@@ -14,6 +14,16 @@ ${bootstrap_server_2}
 ${bootstrap_server_3}
 EOF
 
+cat > /home/ec2-user/config.properties <<- "EOF"
+sasl.jaas.config=org.apache.kafka.common.security.scram.ScramLoginModule required username="${msk_user_name}" password="${msk_user_pass}";
+security.protocol=SASL_SSL
+sasl.mechanism=SCRAM-SHA-512
+EOF
+
+cat > /home/ec2-user/list_topics.sh <<- "EOF"
+kafka-topics.sh --bootstrap-server $(head bootstrap-servers) --command-config config.properties --list
+EOF
+
 echo "PATH=$PATH:/bin:/usr/local/bin:/usr/bin:/kafka_2.13-3.5.1/bin" >> /home/ec2-user/.bash_profile
 
 source ~/.bash_profile

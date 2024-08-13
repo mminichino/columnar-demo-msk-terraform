@@ -3,6 +3,11 @@ variable "region" {
   type        = string
 }
 
+variable "aws_auth_profile" {
+  description = "AWS auth profile"
+  type        = string
+}
+
 variable "environment" {
   description = "Environment"
   type        = string
@@ -39,7 +44,7 @@ variable "owner_email" {
 }
 
 variable "connector_iam_role" {
-  description = "Connectlr IAM role"
+  description = "Connector IAM role"
   type        = string
 }
 
