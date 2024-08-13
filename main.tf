@@ -418,14 +418,14 @@ resource "aws_mskconnect_connector" "src_connector" {
     "value.converter"                               = "org.apache.kafka.connect.json.JsonConverter"
     "value.converter.schemas.enable"                = false
     "key.converter.schemas.enable"                  = false
-    "key.converter"                                 = "org.apache.kafka.connect.json.JsonConverter"
-    "offset.flush.interval.ms"                      = "10000"
+    "key.converter"                                 = "org.apache.kafka.connect.storage.StringConverter"
+    "offset.flush.interval.ms"                      = 5000
     "topic.creation.default.partitions"             = "-1"
     "topic.creation.default.replication.factor"     = "-1"
     "topic.prefix"                                  = "mongo"
     "collection.include.list"                       = join(",", var.collection_list)
     "mongodb.connection.string"                     = "mongodb+srv://${var.mongo_username}:${var.mongo_password}@${var.mongo_hostname}"
-    "tasks.max"                                     = "1"
+    "tasks.max"                                     = 1
   }
 
   kafka_cluster {
