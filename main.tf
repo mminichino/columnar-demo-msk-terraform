@@ -52,6 +52,7 @@ module "configure" {
   msk_cluster_id = module.cluster.cluster_id
   msk_configuration_name = module.cluster.config_name
   msk_connector_id = module.connector.connector_id
+  msk_cluster_version = module.cluster.current_version
   region = var.region
   depends_on = [ module.cluster, module.connector]
 }

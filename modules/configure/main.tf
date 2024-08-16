@@ -16,6 +16,6 @@ resource "terraform_data" "enable_public_access" {
     var.msk_cluster_id
   ]
   provisioner "local-exec" {
-    command = "aws kafka update-connectivity --cluster-arn ${var.msk_cluster_arn} --current-version ${data.aws_msk_configuration.cluster.latest_revision} --connectivity-info '{\"PublicAccess\": {\"Type\": \"SERVICE_PROVIDED_EIPS\"}}' --region ${var.region}"
+    command = "aws kafka update-connectivity --cluster-arn ${var.msk_cluster_arn} --current-version ${var.msk_cluster_version} --connectivity-info '{\"PublicAccess\": {\"Type\": \"SERVICE_PROVIDED_EIPS\"}}' --region ${var.region}"
   }
 }

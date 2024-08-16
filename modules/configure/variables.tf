@@ -26,3 +26,8 @@ variable "msk_cluster_arn" {
   description = "Cluster ARN"
   type        = string
 }
+
+variable "msk_cluster_version" {
+  description = "Cluster Version"
+  type        = string
+}
