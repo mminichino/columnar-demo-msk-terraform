@@ -1,5 +1,9 @@
-provider "aws" {
-  region  = var.region
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+    }
+  }
 }
 
 data "aws_s3_bucket" "bucket" {

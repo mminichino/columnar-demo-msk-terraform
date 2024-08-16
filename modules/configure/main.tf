@@ -1,6 +1,10 @@
 ##
-provider "aws" {
-  region  = var.region
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+    }
+  }
 }
 
 data "aws_msk_configuration" "cluster" {

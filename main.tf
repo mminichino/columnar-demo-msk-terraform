@@ -1,8 +1,15 @@
 #
 #
+provider "aws" {
+  alias = "primary"
+  region  = var.region
+}
 
 module "cluster" {
   source = "./modules/cluster"
+  providers = {
+    aws = aws.primary
+  }
   availability_zones = var.availability_zones
   environment = var.environment
   msk_password = var.msk_password
@@ -17,6 +24,9 @@ module "cluster" {
 
 module "connector" {
   source = "./modules/connector"
+  providers = {
+    aws = aws.primary
+  }
   connector_iam_role = var.connector_iam_role
   environment = var.environment
   mongo_hostname = var.mongo_hostname
@@ -29,14 +39,19 @@ module "connector" {
   security_group_id = module.cluster.security_group_id
   msk_cluster_bootstrap = module.cluster.bootstrap_brokers_iam
   private_subnets = module.cluster.private_subnets
+  depends_on = [module.cluster]
 }
 
 module "configure" {
   source = "./modules/configure"
+  providers = {
+    aws = aws.primary
+  }
   msk_cluster_name = module.cluster.cluster_name
   msk_cluster_arn = module.cluster.cluster_arn
   msk_cluster_id = module.cluster.cluster_id
   msk_configuration_name = module.cluster.config_name
   msk_connector_id = module.connector.connector_id
   region = var.region
+  depends_on = [ module.cluster, module.connector]
 }

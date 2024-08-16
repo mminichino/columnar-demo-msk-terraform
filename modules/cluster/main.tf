@@ -1,5 +1,9 @@
-provider "aws" {
-  region  = var.region
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+    }
+  }
 }
 
 data "aws_ami" "amazon_linux_2023" {
@@ -311,15 +315,6 @@ resource "aws_msk_cluster" "kafka" {
     user        = var.owner_email
   }
 }
-
-# resource "terraform_data" "enable_public_access" {
-#   triggers_replace = [
-#     aws_msk_cluster.kafka.id
-#   ]
-#   provisioner "local-exec" {
-#     command = "aws kafka update-connectivity --cluster-arn ${aws_msk_cluster.kafka.arn} --current-version ${aws_msk_cluster.kafka.current_version} --connectivity-info '{\"PublicAccess\": {\"Type\": \"SERVICE_PROVIDED_EIPS\"}}' --region ${var.region}"
-#   }
-# }
 
 ###############
 # Admin Server
