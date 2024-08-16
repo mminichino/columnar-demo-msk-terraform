@@ -24,6 +24,8 @@ cat > /home/ec2-user/list_topics.sh <<- "EOF"
 kafka-topics.sh --bootstrap-server $(head bootstrap-servers) --command-config config.properties --list
 EOF
 
+curl -OLs https://github.com/aws/aws-msk-iam-auth/releases/download/v2.2.0/aws-msk-iam-auth-2.2.0-all.jar --output-dir /kafka_2.13-3.5.1/libs
+
 echo "PATH=$PATH:/bin:/usr/local/bin:/usr/bin:/kafka_2.13-3.5.1/bin" >> /home/ec2-user/.bash_profile
 
 source ~/.bash_profile

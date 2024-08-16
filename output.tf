@@ -1,15 +1,19 @@
 output "vpc_id" {
-  value = aws_vpc.vpc.id
+  value = module.cluster.vpc_id
 }
 
 output "node_public" {
-    value = aws_instance.admin_host.public_ip
+    value = module.cluster.node_public
 }
 
 output "cluster_arn" {
-  value = aws_msk_cluster.kafka.arn
+  value = module.cluster.cluster_arn
 }
 
 output "current_version" {
-  value = aws_msk_cluster.kafka.current_version
+  value = module.cluster.current_version
+}
+
+output "bootstrap_iam" {
+  value = module.cluster.bootstrap_brokers_public_iam
 }
