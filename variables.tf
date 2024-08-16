@@ -1,44 +1,39 @@
-variable "region" {
+variable "aws_region" {
   description = "AWS Deployment region"
   type        = string
 }
 
-variable "aws_auth_profile" {
-  description = "AWS auth profile"
-  type        = string
-}
-
-variable "environment" {
+variable "kafka_environment" {
   description = "Environment"
   type        = string
 }
 
-variable "vpc_cidr" {
+variable "aws_vpc_cidr" {
   description = "VPC CIDR"
   type        = string
 }
 
-variable "public_subnets_cidr" {
-  type        = list
+variable "aws_public_subnets_cidr" {
+  type        = list(string)
   description = "The CIDR block for the public subnet"
 }
 
-variable "private_subnets_cidr" {
-  type        = list
+variable "aws_private_subnets_cidr" {
+  type        = list(string)
   description = "The CIDR block for the private subnet"
 }
 
-variable "availability_zones" {
-  type        = list
+variable "aws_availability_zones" {
+  type        = list(string)
   description = "The az that the resources will be launched"
 }
 
-variable "ssh_public_key" {
+variable "admin_ssh_public_key" {
   description = "The private key to use when connecting to an instances"
   type        = string
 }
 
-variable "owner_email" {
+variable "owner_email_tag" {
   description = "Owner email for tag"
   type        = string
 }
@@ -53,37 +48,32 @@ variable "msk_password" {
   type        = string
 }
 
-variable "connector_iam_role" {
+variable "connector_aws_iam_role" {
   description = "Connector IAM role"
   type        = string
 }
 
-variable "s3_bucket_name" {
+variable "plugin_bucket_name" {
   description = "Owner email for tag"
   type        = string
 }
 
-variable "msk_plugin_zip" {
+variable "plugin_file_name" {
   description = "Owner email for tag"
   type        = string
 }
 
-variable "collection_list" {
-  description = "Mongo collection list"
-  type        = list
-}
-
-variable "mongo_username" {
+variable "mongodb_username" {
   description = "Mongo connect string"
   type        = string
 }
 
-variable "mongo_password" {
+variable "mongodb_password" {
   description = "Mongo connect string"
   type        = string
 }
 
-variable "mongo_hostname" {
+variable "mongodb_hostname" {
   description = "Mongo connect string"
   type        = string
 }

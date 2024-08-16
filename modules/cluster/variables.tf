@@ -37,13 +37,3 @@ variable "owner_email" {
   description = "Owner email for tag"
   type        = string
 }
-
-variable "msk_user" {
-  description = "Username for MSK"
-  type        = string
-}
-
-variable "msk_password" {
-  description = "Password for MSK"
-  type        = string
-}

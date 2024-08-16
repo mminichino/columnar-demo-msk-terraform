@@ -37,7 +37,7 @@ variable "s3_bucket_name" {
   type        = string
 }
 
-variable "msk_plugin_zip" {
+variable "msk_plugin_file" {
   description = "Owner email for tag"
   type        = string
 }

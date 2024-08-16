@@ -316,6 +316,25 @@ resource "aws_msk_cluster" "kafka" {
   }
 }
 
+resource "aws_msk_cluster_policy" "kafka_cluster_policy" {
+  cluster_arn = aws_msk_cluster.kafka.arn
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [{
+      Sid    = "MskClusterPolicy"
+      Effect = "Allow"
+      Principal = {
+        "AWS" = "*"
+      }
+      Action = [
+        "kafka:*"
+      ]
+      Resource = aws_msk_cluster.kafka.arn
+    }]
+  })
+}
+
 ###############
 # Admin Server
 ###############
@@ -331,8 +350,6 @@ resource "aws_instance" "admin_host" {
     bootstrap_server_1 = split(",", aws_msk_cluster.kafka.bootstrap_brokers_sasl_iam)[0]
     bootstrap_server_2 = split(",", aws_msk_cluster.kafka.bootstrap_brokers_sasl_iam)[1]
     bootstrap_server_3 = split(",", aws_msk_cluster.kafka.bootstrap_brokers_sasl_iam)[2]
-    msk_user_name      = var.msk_user
-    msk_user_pass      = var.msk_password
   })
   root_block_device {
     volume_type = "gp3"

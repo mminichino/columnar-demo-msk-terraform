@@ -12,7 +12,7 @@ data "aws_s3_bucket" "bucket" {
 
 data "aws_s3_object" "file_name" {
   bucket = data.aws_s3_bucket.bucket.id
-  key    = var.msk_plugin_zip
+  key    = var.msk_plugin_file
 }
 
 data "aws_iam_role" "connector_role" {
@@ -31,9 +31,9 @@ resource "aws_cloudwatch_log_group" "connector_log_group" {
   name = "${var.environment}-connector-log-group"
 }
 
-resource "aws_mskconnect_custom_plugin" "debezium_plugin" {
-  name         = "${var.environment}-debezium-plugin"
-  content_type = "ZIP"
+resource "aws_mskconnect_custom_plugin" "custom_plugin" {
+  name         = "${var.environment}-custom-plugin"
+  content_type = "JAR"
   location {
     s3 {
       bucket_arn = data.aws_s3_bucket.bucket.arn
@@ -55,7 +55,7 @@ EOT
 resource "aws_mskconnect_connector" "src_connector" {
   depends_on = [
     data.aws_iam_role.connector_role,
-    aws_mskconnect_custom_plugin.debezium_plugin
+    aws_mskconnect_custom_plugin.custom_plugin
   ]
   name  = "${var.environment}-src-connector"
 
@@ -137,8 +137,8 @@ resource "aws_mskconnect_connector" "src_connector" {
 
   plugin {
     custom_plugin {
-      arn      = aws_mskconnect_custom_plugin.debezium_plugin.arn
-      revision = aws_mskconnect_custom_plugin.debezium_plugin.latest_revision
+      arn      = aws_mskconnect_custom_plugin.custom_plugin.arn
+      revision = aws_mskconnect_custom_plugin.custom_plugin.latest_revision
     }
   }
 
