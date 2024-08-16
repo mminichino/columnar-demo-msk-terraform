@@ -7,6 +7,11 @@ variable "msk_cluster_id" {
   type        = string
 }
 
+variable "msk_connector_id" {
+  description = "Connector ID"
+  type        = string
+}
+
 variable "msk_cluster_name" {
   description = "Cluster Name"
   type        = string

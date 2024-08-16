@@ -1,4 +1,7 @@
 ##
+provider "aws" {
+  region  = var.region
+}
 
 data "aws_msk_configuration" "cluster" {
   name = var.msk_configuration_name
