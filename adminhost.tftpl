@@ -22,7 +22,7 @@ sasl.client.callback.handler.class=software.amazon.msk.auth.iam.IAMClientCallbac
 EOF
 
 cat > /home/ec2-user/list_topics.sh <<EOF
-kafka-topics.sh --bootstrap-server $(head bootstrap-servers) --command-config config.properties --list
+kafka-topics.sh --bootstrap-server \$(head bootstrap-servers) --command-config config.properties --list
 EOF
 
 chmod +x /home/ec2-user/list_topics.sh
