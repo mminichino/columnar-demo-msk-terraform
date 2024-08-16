@@ -15,5 +15,9 @@ output "current_version" {
 }
 
 output "bootstrap_iam" {
+  value = module.cluster.bootstrap_brokers_iam
+}
+
+output "bootstrap_public_iam" {
   value = module.cluster.bootstrap_brokers_public_iam
 }
