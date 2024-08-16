@@ -30,3 +30,13 @@ module "connector" {
   msk_cluster_bootstrap = module.cluster.bootstrap_brokers_iam
   private_subnets = module.cluster.private_subnets
 }
+
+module "configure" {
+  source = "./modules/configure"
+  msk_cluster_name = module.cluster.cluster_name
+  msk_cluster_arn = module.cluster.cluster_arn
+  msk_cluster_id = module.cluster.cluster_id
+  msk_configuration_name = module.cluster.config_name
+  region = var.region
+  depends_on = [module.connector.connector_id]
+}

@@ -26,8 +26,16 @@ output "cluster_arn" {
   value = aws_msk_cluster.kafka.arn
 }
 
+output "cluster_id" {
+  value = aws_msk_cluster.kafka.id
+}
+
 output "current_version" {
   value = aws_msk_cluster.kafka.current_version
+}
+
+output "config_name" {
+  value = aws_msk_configuration.kafka_config.name
 }
 
 output "bootstrap_brokers_public_iam" {
