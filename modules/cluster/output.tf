@@ -38,12 +38,16 @@ output "config_name" {
   value = aws_msk_configuration.kafka_config.name
 }
 
-output "bootstrap_brokers_public_iam" {
-  value = aws_msk_cluster.kafka.bootstrap_brokers_public_sasl_iam
+output "bootstrap_brokers_vpc_connectivity_sasl_iam" {
+  value = aws_msk_cluster.kafka.bootstrap_brokers_vpc_connectivity_sasl_iam
 }
 
 output "bootstrap_brokers_iam" {
   value = aws_msk_cluster.kafka.bootstrap_brokers_sasl_iam
+}
+
+output "bootstrap_brokers_public_iam" {
+  value = aws_msk_cluster.kafka.bootstrap_brokers_public_sasl_iam
 }
 
 output "bootstrap_brokers_public_scram" {

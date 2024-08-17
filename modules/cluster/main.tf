@@ -150,8 +150,20 @@ resource "aws_security_group" "default" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
+    from_port   = 9096
+    to_port     = 9096
+    protocol    = "TCP"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
     from_port   = 9196
     to_port     = 9196
+    protocol    = "TCP"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    from_port   = 9098
+    to_port     = 9098
     protocol    = "TCP"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -256,7 +268,7 @@ resource "aws_msk_cluster" "kafka" {
 
   broker_node_group_info {
     instance_type = "kafka.m7g.xlarge"
-    client_subnets = aws_subnet.public_subnet.*.id
+    client_subnets = aws_subnet.private_subnet.*.id
     security_groups = [aws_security_group.default.id]
 
     storage_info {
@@ -266,8 +278,12 @@ resource "aws_msk_cluster" "kafka" {
     }
 
     connectivity_info {
-      public_access {
-        type = "DISABLED"
+      vpc_connectivity {
+        client_authentication {
+          sasl {
+            iam = true
+          }
+        }
       }
     }
   }

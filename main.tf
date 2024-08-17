@@ -40,17 +40,17 @@ module "connector" {
   depends_on = [module.cluster]
 }
 
-module "configure" {
-  source = "./modules/configure"
-  providers = {
-    aws = aws.primary
-  }
-  msk_cluster_name = module.cluster.cluster_name
-  msk_cluster_arn = module.cluster.cluster_arn
-  msk_cluster_id = module.cluster.cluster_id
-  msk_configuration_name = module.cluster.config_name
-  msk_connector_id = module.connector.connector_id
-  msk_cluster_version = module.cluster.current_version
-  region = var.aws_region
-  depends_on = [ module.cluster, module.connector]
-}
+# module "configure" {
+#   source = "./modules/configure"
+#   providers = {
+#     aws = aws.primary
+#   }
+#   msk_cluster_name = module.cluster.cluster_name
+#   msk_cluster_arn = module.cluster.cluster_arn
+#   msk_cluster_id = module.cluster.cluster_id
+#   msk_configuration_name = module.cluster.config_name
+#   msk_connector_id = module.connector.connector_id
+#   msk_cluster_version = module.cluster.current_version
+#   region = var.aws_region
+#   depends_on = [ module.cluster, module.connector]
+# }

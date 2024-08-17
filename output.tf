@@ -18,6 +18,6 @@ output "bootstrap_iam" {
   value = module.cluster.bootstrap_brokers_iam
 }
 
-output "bootstrap_public_iam" {
-  value = module.cluster.bootstrap_brokers_public_iam
+output "bootstrap_vpc_iam" {
+  value = module.cluster.bootstrap_brokers_vpc_connectivity_sasl_iam
 }
