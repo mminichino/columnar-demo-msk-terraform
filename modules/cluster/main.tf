@@ -278,12 +278,8 @@ resource "aws_msk_cluster" "kafka" {
     }
 
     connectivity_info {
-      vpc_connectivity {
-        client_authentication {
-          sasl {
-            iam = true
-          }
-        }
+      public_access {
+        type = "DISABLED"
       }
     }
   }
@@ -344,7 +340,8 @@ resource "aws_msk_cluster_policy" "kafka_cluster_policy" {
         "AWS" = "*"
       }
       Action = [
-        "kafka:*"
+        "kafka:*",
+        "kafka-cluster:*"
       ]
       Resource = aws_msk_cluster.kafka.arn
     }]
